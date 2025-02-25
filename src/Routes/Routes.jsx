@@ -3,6 +3,7 @@ import Layout from "../Layout/Layout";
 import Register from "../Social/Register";
 import Login from "../Social/Login";
 import Home from "../Pages/Home/Home";
+import MFS from "../Pages/MFS/MFS";
 
 const routes = createBrowserRouter([
   {
@@ -12,6 +13,10 @@ const routes = createBrowserRouter([
       {
         path: "/",
         element: <Home />,
+      },
+      {
+        path: "/mfs",
+        element: <MFS />,
       },
       {
         path: "/login",

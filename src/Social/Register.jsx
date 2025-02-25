@@ -2,9 +2,12 @@ import { useForm } from "react-hook-form";
 import { AuthContext } from "../Provider/AuthProvider";
 import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
+import useAxiosSecure from "../Hooks/useAxiosSecure";
+import { toast } from "react-toastify";
 
 const Register = () => {
   const { createUser } = useContext(AuthContext);
+  const axiosSecure = useAxiosSecure();
   const navigate = useNavigate();
 
   const {
@@ -15,8 +18,37 @@ const Register = () => {
 
   const onSubmit = async (data) => {
     console.log("Registration Data:", data);
-    await createUser(data.email, data.pin);
-    navigate("/");
+
+    try {
+      // Create user in Firebase and wait for response
+      const userCredential = await createUser(data.email, data.pin);
+      const createdUser = userCredential.user; // Get created user's data
+
+      if (!createdUser?.uid) {
+        toast.error("User UID is not available. Registration failed.");
+        return;
+      }
+
+      // Prepare user info for database
+      const userInfo = {
+        ...data, // Spread the form data
+        userUid: createdUser.uid, // Use UID from userCredential
+      };
+
+      console.log("Saving to database:", userInfo);
+
+      // Save user data to MongoDB
+      const res = await axiosSecure.post("/users", userInfo);
+      console.log(res.data);
+
+      if (res.data.insertedId) {
+        toast.success("User data added successfully");
+        navigate("/");
+      }
+    } catch (error) {
+      console.error("Error during registration:", error);
+      toast.error("Registration failed. Please try again.");
+    }
   };
 
   return (
@@ -57,6 +89,22 @@ const Register = () => {
               />
               {errors.mobile && (
                 <p className="text-red-500">{errors.mobile.message}</p>
+              )}
+              <label className="label">NID</label>
+              <input
+                type="number"
+                className="input input-bordered"
+                placeholder="Mobile Number"
+                {...register("nid", {
+                  required: "Mobile number is required",
+                  pattern: {
+                    value: /^[0-9]{6}$/,
+                    message: "NID must be exactly 6 digits",
+                  },
+                })}
+              />
+              {errors.nid && (
+                <p className="text-red-500">{errors.nid.message}</p>
               )}
 
               <label className="label">Email</label>
