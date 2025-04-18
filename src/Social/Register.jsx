@@ -148,7 +148,9 @@ const Register = () => {
                   required: "Account type is required",
                 })}
               >
-                <option value="">Select Account Type</option>
+                <option disabled value="">
+                  Select Account Type
+                </option>
                 <option value="Agent">Agent</option>
                 <option value="User">User</option>
               </select>

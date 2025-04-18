@@ -42,7 +42,13 @@ const Navbar = () => {
               <Link to="/">Home</Link>
             </li>
             <li>
-              <Link to="/mfs">MFS</Link>
+              <Link to="/user">User</Link>
+            </li>
+            <li>
+              <Link to="/agent">Agent</Link>
+            </li>
+            <li>
+              <Link to="/admin">Admin</Link>
             </li>
           </ul>
         </div>
@@ -54,7 +60,13 @@ const Navbar = () => {
             <Link to="/">Home</Link>
           </li>
           <li>
-            <Link to="/mfs">MFS</Link>
+            <Link to="/user">User</Link>
+          </li>
+          <li>
+            <Link to="/agent">Agent</Link>
+          </li>
+          <li>
+            <Link to="/admin">Admin</Link>
           </li>
         </ul>
       </div>
