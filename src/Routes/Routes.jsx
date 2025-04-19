@@ -4,6 +4,7 @@ import Register from "../Social/Register";
 import Login from "../Social/Login";
 import Home from "../Pages/Home/Home";
 import PrivateRoutes from "./PrivateRoutes";
+import User from "../Pages/Customer/User";
 // import MFS from "../Pages/MFS/MFS";
 
 const routes = createBrowserRouter([
@@ -19,7 +20,10 @@ const routes = createBrowserRouter([
           </PrivateRoutes>
         ),
       },
-      // {
+      {
+        path: "/user",
+        element: <User />,
+      }, // {
       //   path: "/mfs",
       //   element: <MFS />,
       // },

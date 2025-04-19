@@ -1,9 +1,14 @@
 import { useContext } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../Provider/AuthProvider";
+import useAdmin from "../../Hooks/useAdmin";
+import useAgent from "../../Hooks/useAgent";
 
 const Navbar = () => {
   const { user, logout } = useContext(AuthContext);
+  const [isAdmin] = useAdmin();
+  const [isAgent] = useAgent();
+  console.log(isAdmin, isAgent);
 
   const handleLogout = async () => {
     try {
@@ -53,9 +58,16 @@ const Navbar = () => {
           </ul>
         </div>
         <a className="btn btn-ghost text-xl">daisyUI</a>
+        <h2>{user?.email}</h2>
       </div>
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1">
+          {isAdmin && (
+            <li>
+              <Link to="/admin">Admin</Link>
+            </li>
+          )}
+
           <li>
             <Link to="/">Home</Link>
           </li>
@@ -64,9 +76,6 @@ const Navbar = () => {
           </li>
           <li>
             <Link to="/agent">Agent</Link>
-          </li>
-          <li>
-            <Link to="/admin">Admin</Link>
           </li>
         </ul>
       </div>

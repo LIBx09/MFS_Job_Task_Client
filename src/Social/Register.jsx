@@ -31,8 +31,16 @@ const Register = () => {
 
       // Prepare user info for database
       const userInfo = {
-        ...data, // Spread the form data
-        userUid: createdUser.uid, // Use UID from userCredential
+        name: data.name,
+        email: data.email,
+        mobile: data.mobile,
+        pin: data.pin,
+        nid: data.nid,
+        role: "user", // always start as 'user'
+        requestAgent: data.userRole === "Agent", // true if user selected agent
+        userUid: createdUser.uid,
+        balance: 40, // optional: you can handle it in backend too
+        isBlocked: false,
       };
 
       console.log("Saving to database:", userInfo);
@@ -94,7 +102,7 @@ const Register = () => {
               <input
                 type="number"
                 className="input input-bordered"
-                placeholder="Mobile Number"
+                placeholder="NID Number"
                 {...register("nid", {
                   required: "Mobile number is required",
                   pattern: {
@@ -155,7 +163,7 @@ const Register = () => {
                 <option value="User">User</option>
               </select>
               {errors.accountType && (
-                <p className="text-red-500">{errors.accountType.message}</p>
+                <p className="text-red-500">{errors.userRole.message}</p>
               )}
 
               <button type="submit" className="btn btn-neutral mt-4 w-full">
