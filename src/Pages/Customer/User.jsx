@@ -1,7 +1,10 @@
+import UserTabs from "./UserTabs";
+
 const User = () => {
   return (
     <div>
-      <h2>USer component</h2>
+      <h3>Hello This is User panel</h3>
+      <UserTabs />
     </div>
   );
 };

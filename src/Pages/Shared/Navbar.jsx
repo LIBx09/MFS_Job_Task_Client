@@ -43,6 +43,45 @@ const Navbar = () => {
             tabIndex={0}
             className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
           >
+            {/* {isAdmin && (
+              <>
+                <li>
+                  <Link to="/admin">Admin</Link>
+                </li>
+                <li>
+                  <Link to="/">Home</Link>
+                </li>
+                <li>
+                  <Link to="/user">User</Link>
+                </li>
+                <li>
+                  <Link to="/agent">Agent</Link>
+                </li>
+              </>
+            )}
+            {isAgent && (
+              <>
+                <li>
+                  <Link to="/agent">Agent</Link>
+                </li>
+                <li>
+                  <Link to="/">Home</Link>
+                </li>
+              </>
+            )}
+            {!isAdmin && !isAgent && (
+              <>
+                <li>
+                  <Link to="/">Home</Link>
+                </li>
+                <li>
+                  <Link to="/user">User</Link>
+                </li>
+              </>
+            )} */}
+            <li>
+              <Link to="/admin">Admin</Link>
+            </li>
             <li>
               <Link to="/">Home</Link>
             </li>
@@ -52,9 +91,6 @@ const Navbar = () => {
             <li>
               <Link to="/agent">Agent</Link>
             </li>
-            <li>
-              <Link to="/admin">Admin</Link>
-            </li>
           </ul>
         </div>
         <a className="btn btn-ghost text-xl">daisyUI</a>
@@ -62,12 +98,45 @@ const Navbar = () => {
       </div>
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1">
-          {isAdmin && (
-            <li>
-              <Link to="/admin">Admin</Link>
-            </li>
+          {/* {isAdmin && (
+            <>
+              <li>
+                <Link to="/admin">Admin</Link>
+              </li>
+              <li>
+                <Link to="/">Home</Link>
+              </li>
+              <li>
+                <Link to="/user">User</Link>
+              </li>
+              <li>
+                <Link to="/agent">Agent</Link>
+              </li>
+            </>
           )}
-
+          {isAgent && (
+            <>
+              <li>
+                <Link to="/agent">Agent</Link>
+              </li>
+              <li>
+                <Link to="/">Home</Link>
+              </li>
+            </>
+          )}
+          {!isAdmin && !isAgent && (
+            <>
+              <li>
+                <Link to="/">Home</Link>
+              </li>
+              <li>
+                <Link to="/user">User</Link>
+              </li>
+            </>
+          )} */}
+          <li>
+            <Link to="/admin">Admin</Link>
+          </li>
           <li>
             <Link to="/">Home</Link>
           </li>

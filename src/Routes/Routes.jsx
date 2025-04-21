@@ -5,6 +5,8 @@ import Login from "../Social/Login";
 import Home from "../Pages/Home/Home";
 import PrivateRoutes from "./PrivateRoutes";
 import User from "../Pages/Customer/User";
+import Agent from "../Pages/Agent/Agent";
+import Admin from "../Pages/Admin/Admin";
 // import MFS from "../Pages/MFS/MFS";
 
 const routes = createBrowserRouter([
@@ -23,10 +25,15 @@ const routes = createBrowserRouter([
       {
         path: "/user",
         element: <User />,
-      }, // {
-      //   path: "/mfs",
-      //   element: <MFS />,
-      // },
+      },
+      {
+        path: "/agent",
+        element: <Agent />,
+      },
+      {
+        path: "/admin",
+        element: <Admin />,
+      },
       {
         path: "/login",
         element: <Login />,
