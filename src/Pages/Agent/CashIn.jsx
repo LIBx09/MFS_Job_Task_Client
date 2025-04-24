@@ -1,9 +1,11 @@
 import { useForm } from "react-hook-form";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
 import { toast } from "react-toastify";
+import { useState } from "react";
 
 const CashIn = () => {
   const axiosSecure = useAxiosSecure();
+  const [trxId, setTrxId] = useState(null);
 
   const {
     register,
@@ -16,6 +18,7 @@ const CashIn = () => {
     try {
       const res = await axiosSecure.post("/transactions/UCashIn", data);
       toast.success(res.data.message);
+      setTrxId(res.data.trxId);
       console.log("Transaction:", res.data.transaction);
       reset(); // Reset form after successful submission
     } catch (error) {
@@ -80,6 +83,11 @@ const CashIn = () => {
           {isSubmitting ? "Processing..." : "Cash In"}
         </button>
       </form>
+      {trxId && (
+        <div className="mt-4 text-green-600">
+          ✅ Transaction ID: <strong>{trxId}</strong>
+        </div>
+      )}
     </>
   );
 };

@@ -16,23 +16,31 @@ const routes = createBrowserRouter([
     children: [
       {
         path: "/",
+        element: <Home />,
+      },
+      {
+        path: "/user",
         element: (
           <PrivateRoutes>
-            <Home />
+            <User />
           </PrivateRoutes>
         ),
       },
       {
-        path: "/user",
-        element: <User />,
-      },
-      {
         path: "/agent",
-        element: <Agent />,
+        element: (
+          <PrivateRoutes>
+            <Agent />
+          </PrivateRoutes>
+        ),
       },
       {
         path: "/admin",
-        element: <Admin />,
+        element: (
+          <PrivateRoutes>
+            <Admin />
+          </PrivateRoutes>
+        ),
       },
       {
         path: "/login",

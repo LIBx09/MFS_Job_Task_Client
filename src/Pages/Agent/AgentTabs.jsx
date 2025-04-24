@@ -1,23 +1,20 @@
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
-import CashOut from "./CashOut";
+
 import CashIn from "./CashIn";
 import CashRequest from "./CashRequest";
+import WithDrawal from "./WithDrawal";
 
 const AgentTabs = () => {
   return (
     <>
       <Tabs>
         <TabList>
-          <Tab>UserCashOut</Tab>
           <Tab>UserCashIn</Tab>
           <Tab>Cash Request</Tab>
-          <Tab>Title 4</Tab>
+          <Tab>WithDrawal Req</Tab>
         </TabList>
 
-        <TabPanel>
-          <CashOut />
-        </TabPanel>
         <TabPanel>
           <CashIn />
         </TabPanel>
@@ -25,7 +22,7 @@ const AgentTabs = () => {
           <CashRequest />
         </TabPanel>
         <TabPanel>
-          <h2>Any content 4</h2>
+          <WithDrawal />
         </TabPanel>
       </Tabs>
     </>
