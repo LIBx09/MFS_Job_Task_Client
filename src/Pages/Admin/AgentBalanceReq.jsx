@@ -38,7 +38,7 @@ const AgentBalanceReq = () => {
   return (
     <div className="p-4 md:p-6 bg-white rounded-xl shadow-md">
       <h2 className="text-2xl font-semibold text-center mb-6 text-primary">
-        Agent Balance Requests
+        Agent Balance Requestsdasfa
       </h2>
 
       {message && <p className="text-red-600 text-center mb-4">{message}</p>}

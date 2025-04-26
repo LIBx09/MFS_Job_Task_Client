@@ -1,3 +1,4 @@
+import UserAgentInfo from "../../component/UserAgentInfo";
 import AgentTabs from "./AgentTabs";
 
 const Agent = () => {
@@ -6,6 +7,7 @@ const Agent = () => {
       <h3 className="text-2xl font-semibold text-gray-700 mb-6 bg-blue-600 text-white p-4 rounded-md shadow-md">
         Welcome to the Agent Panel
       </h3>
+      <UserAgentInfo />
       <div className="bg-white rounded-lg shadow-md p-6">
         <AgentTabs />
       </div>

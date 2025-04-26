@@ -1,13 +1,14 @@
 import { useForm } from "react-hook-form";
 import { useContext, useState } from "react";
 import { AuthContext } from "../Provider/AuthProvider";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
 const Login = () => {
   const { login } = useContext(AuthContext);
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
+  const location = useLocation();
 
   const {
     register,
@@ -20,6 +21,7 @@ const Login = () => {
     try {
       console.log("User Data:", data);
       await login(data.email, data.pin);
+      navigate(location?.state ? location.state : "/");
       toast.success("Login successful! Welcome back!");
       navigate("/");
     } catch (error) {

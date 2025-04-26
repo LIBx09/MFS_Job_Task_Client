@@ -25,17 +25,17 @@ const AllUsersManage = () => {
     }
   };
 
-  const toggleBlock = async (id, isBlocked) => {
-    const action = isBlocked ? "unblock" : "block";
-    try {
-      await axiosSecure.patch(`/admin/block-user/${id}`, { action });
-      toast.success(`User successfully ${action}ed`);
-      handleSearch(); // Refresh list
-    } catch (err) {
-      console.error("Block/unblock error:", err);
-      toast.error("Failed to update user status");
-    }
-  };
+  // const toggleBlock = async (id, isBlocked) => {
+  //   const action = isBlocked ? "unblock" : "block";
+  //   try {
+  //     await axiosSecure.patch(`/admin/block-user/${id}`, { action });
+  //     toast.success(`User successfully ${action}ed`);
+  //     handleSearch(); // Refresh list
+  //   } catch (err) {
+  //     console.error("Block/unblock error:", err);
+  //     toast.error("Failed to update user status");
+  //   }
+  // };
 
   const fetchUserTransactions = async (userId, userName) => {
     try {
@@ -80,8 +80,7 @@ const AllUsersManage = () => {
               <th className="p-3 border">Name & Role</th>
               <th className="p-3 border">Phone</th>
               <th className="p-3 border">Balance</th>
-              <th className="p-3 border">Status</th>
-              <th className="p-3 border">Action</th>
+
               <th className="p-3 border">Transactions</th>
             </tr>
           </thead>
@@ -96,10 +95,10 @@ const AllUsersManage = () => {
                 </td>
                 <td className="p-2 border">{user.mobile}</td>
                 <td className="p-2 border">{user.balance} ৳</td>
-                <td className="p-2 border capitalize">
+                {/* <td className="p-2 border capitalize">
                   {user.status === "blocked" ? "Blocked" : "Active"}
-                </td>
-                <td className="p-2 border">
+                </td> */}
+                {/* <td className="p-2 border">
                   <button
                     onClick={() => toggleBlock(user._id, user.isBlocked)}
                     className={`px-3 py-1 rounded text-white transition ${
@@ -110,9 +109,10 @@ const AllUsersManage = () => {
                   >
                     {user.isBlocked ? "Unblock" : "Block"}
                   </button>
-                </td>
+                </td> */}
                 <td className="p-2 border">
                   <button
+                    title="View User Details Down Below"
                     onClick={() => fetchUserTransactions(user._id, user.name)}
                     className="bg-indigo-600 hover:bg-indigo-700 text-white px-3 py-1 rounded"
                   >

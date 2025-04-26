@@ -11,8 +11,8 @@ const AgentTabs = () => {
       <Tabs>
         <TabList>
           <Tab>UserCashIn</Tab>
-          <Tab>Cash Request</Tab>
-          <Tab>WithDrawal Req</Tab>
+          <Tab>Balance Request</Tab>
+          <Tab>Withdrawal Req</Tab>
         </TabList>
 
         <TabPanel>

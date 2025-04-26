@@ -3,63 +3,77 @@ import { AuthContext } from "../../Provider/AuthProvider";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
 import { toast } from "react-toastify";
 
-const WithDrawal = () => {
+const Withdrawal = () => {
   const { user } = useContext(AuthContext);
   const axiosSecure = useAxiosSecure();
 
   const [amount, setAmount] = useState("");
-  const [message, setMessage] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    if (!amount || isNaN(amount) || Number(amount) <= 0) {
+      toast.error("Please enter a valid withdrawal amount.");
+      return;
+    }
+
+    setIsSubmitting(true);
+
     try {
       const res = await axiosSecure.post("/withdrawal-request", {
-        amount,
+        amount: Number(amount),
         email: user?.email,
       });
-      setMessage(res.data.message);
-      toast.success(res.data.message); // Success toast
+      toast.success(res.data.message || "Withdrawal request submitted!");
+      setAmount(""); // Clear the input after successful submission
     } catch (err) {
-      setMessage("Error submitting request");
-      toast.error("Failed to submit request", err); // Error toast
+      toast.error(
+        err.response?.data?.message || "Failed to submit withdrawal request"
+      );
+      console.error("Withdrawal error:", err);
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
   return (
-    <div className="max-w-lg mx-auto p-6 bg-white shadow-lg rounded-lg">
-      <h2 className="text-2xl font-semibold text-gray-800 mb-6 text-center">
-        Request Withdrawal
-      </h2>
+    <div className="max-w-md mx-auto p-6 bg-white rounded-lg shadow-md space-y-6">
+      <div>
+        <h2 className="text-2xl font-semibold text-center mb-2">
+          Withdrawal Request
+        </h2>
+        <p className="text-gray-600 text-center text-sm">
+          Agents can request to withdraw money from their balance. Admin will
+          review and process the request.
+        </p>
+      </div>
+
       <form onSubmit={handleSubmit} className="space-y-4">
         <div>
-          <label className="block text-gray-700 font-medium">Amount</label>
+          <label className="block text-gray-700 text-sm font-medium">
+            Amount
+          </label>
           <input
             type="number"
             value={amount}
             onChange={(e) => setAmount(e.target.value)}
-            required
-            className="w-full p-3 mt-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
             placeholder="Enter amount"
+            required
+            className="w-full p-3 mt-1 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
           />
         </div>
+
         <button
           type="submit"
-          className="w-full bg-blue-600 text-white py-3 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
+          disabled={isSubmitting}
+          className="w-full bg-blue-600 hover:bg-blue-700 text-white py-3 rounded transition duration-300 disabled:opacity-50"
         >
-          Submit Request
+          {isSubmitting ? "Submitting..." : "Submit Request"}
         </button>
       </form>
-      {message && (
-        <p
-          className={`mt-4 text-center font-medium ${
-            message.includes("Error") ? "text-red-500" : "text-green-500"
-          }`}
-        >
-          {message}
-        </p>
-      )}
     </div>
   );
 };
 
-export default WithDrawal;
+export default Withdrawal;

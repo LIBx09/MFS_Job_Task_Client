@@ -18,48 +18,48 @@ const Navbar = () => {
     }
   };
 
-  const renderNavLinks = () => {
-    if (isAdmin) {
-      return (
-        <>
-          <li>
-            <Link to="/admin">Admin</Link>
-          </li>
-          <li>
-            <Link to="/">Home</Link>
-          </li>
-          <li>
-            <Link to="/user">User</Link>
-          </li>
-          <li>
-            <Link to="/agent">Agent</Link>
-          </li>
-        </>
-      );
-    }
-    if (isAgent) {
-      return (
-        <>
-          <li>
-            <Link to="/agent">Agent</Link>
-          </li>
-          <li>
-            <Link to="/">Home</Link>
-          </li>
-        </>
-      );
-    }
-    return (
-      <>
-        <li>
-          <Link to="/">Home</Link>
-        </li>
-        <li>
-          <Link to="/user">User</Link>
-        </li>
-      </>
-    );
-  };
+  // const renderNavLinks = () => {
+  //   if (isAdmin) {
+  //     return (
+  //       <>
+  //         <li>
+  //           <Link to="/admin">Admin</Link>
+  //         </li>
+  //         <li>
+  //           <Link to="/">Home</Link>
+  //         </li>
+  //         <li>
+  //           <Link to="/user">User</Link>
+  //         </li>
+  //         <li>
+  //           <Link to="/agent">Agent</Link>
+  //         </li>
+  //       </>
+  //     );
+  //   }
+  //   if (isAgent) {
+  //     return (
+  //       <>
+  //         <li>
+  //           <Link to="/agent">Agent</Link>
+  //         </li>
+  //         <li>
+  //           <Link to="/">Home</Link>
+  //         </li>
+  //       </>
+  //     );
+  //   }
+  //   return (
+  //     <>
+  //       <li>
+  //         <Link to="/">Home</Link>
+  //       </li>
+  //       <li>
+  //         <Link to="/user">User</Link>
+  //       </li>
+  //     </>
+  //   );
+  // };
 
   return (
     <div className="navbar bg-base-100 shadow-sm px-4">
@@ -85,16 +85,88 @@ const Navbar = () => {
             tabIndex={0}
             className="menu menu-sm dropdown-content mt-3 z-[1] w-52 p-2 shadow bg-base-100 rounded-box"
           >
-            {renderNavLinks()}
+            {isAdmin && (
+              <>
+                <li>
+                  <Link to="/admin">Admin</Link>
+                </li>
+                <li>
+                  <Link to="/">Home</Link>
+                </li>
+                <li>
+                  <Link to="/user">User</Link>
+                </li>
+                <li>
+                  <Link to="/agent">Agent</Link>
+                </li>
+              </>
+            )}
+            {isAgent && (
+              <>
+                <li>
+                  <Link to="/">Home</Link>
+                </li>
+                <li>
+                  <Link to="/agent">Agent</Link>
+                </li>
+              </>
+            )}
+            {!isAdmin && !isAgent && (
+              <>
+                <li>
+                  <Link to="/">Home</Link>
+                </li>
+                <li>
+                  <Link to="/user">User</Link>
+                </li>
+              </>
+            )}
           </ul>
         </div>
         <Link to="/" className="btn btn-ghost text-xl normal-case">
-          daisyUI
+          MFS
         </Link>
       </div>
 
       <div className="navbar-center hidden lg:flex">
-        <ul className="menu menu-horizontal px-1">{renderNavLinks()}</ul>
+        <ul className="menu menu-horizontal px-1">
+          {isAdmin && (
+            <>
+              <li>
+                <Link to="/admin">Admin</Link>
+              </li>
+              <li>
+                <Link to="/">Home</Link>
+              </li>
+              <li>
+                <Link to="/user">User</Link>
+              </li>
+              <li>
+                <Link to="/agent">Agent</Link>
+              </li>
+            </>
+          )}
+          {isAgent && (
+            <>
+              <li>
+                <Link to="/">Home</Link>
+              </li>
+              <li>
+                <Link to="/agent">Agent</Link>
+              </li>
+            </>
+          )}
+          {!isAdmin && !isAgent && (
+            <>
+              <li>
+                <Link to="/">Home</Link>
+              </li>
+              <li>
+                <Link to="/user">User</Link>
+              </li>
+            </>
+          )}
+        </ul>
       </div>
 
       <div className="navbar-end gap-2">

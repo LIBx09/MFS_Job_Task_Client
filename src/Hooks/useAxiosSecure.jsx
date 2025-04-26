@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const axiosInstance = axios.create({
-  baseURL: "https://mfs-server-mu.vercel.app",
+  baseURL: "http://localhost:5000",
   withCredentials: true,
 });
 const useAxiosSecure = () => {
@@ -9,3 +9,4 @@ const useAxiosSecure = () => {
 };
 
 export default useAxiosSecure;
+// http://localhost:5000

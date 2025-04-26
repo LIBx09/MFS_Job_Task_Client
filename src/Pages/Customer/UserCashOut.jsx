@@ -28,7 +28,26 @@ const UserCashOut = () => {
 
   return (
     <div className="max-w-md mx-auto p-4 border rounded-md shadow-md">
-      <h2 className="text-xl font-semibold mb-4 text-center">User Cash Out</h2>
+      <div className="my-2">
+        <h2 className="text-2xl font-semibold mb-2">Cash Out</h2>
+        <ul className="list-decimal list-inside text-gray-700 space-y-1">
+          <li>Users can withdraw funds via authorized agents.</li>
+          <li>
+            1.5% cash-out fee applied: 1% for agent income, 0.5% for admin
+            income.
+          </li>
+          <li>
+            User balance, agent balance, agent income, admin income, and system
+            total money are updated.
+          </li>
+          <li>PIN verification and agent phone verification are required.</li>
+          <li>
+            Successful cash-out triggers a user notification with transaction
+            details.
+          </li>
+          <li>Each transaction is recorded with a unique transaction ID.</li>
+        </ul>
+      </div>
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
         <input
           {...register("userId", { required: "User ID is required" })}
